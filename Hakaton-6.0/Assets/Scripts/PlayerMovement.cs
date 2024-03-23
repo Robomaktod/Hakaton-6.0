@@ -6,51 +6,55 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
 
-    private Rigidbody2D rb;
-
+    [SerializeField] private Rigidbody2D rb;
+    public Joystick joystick;
+    public bool PC = true;
     //speed
-    public float runSpeed = 20f;
-    float moveLimiter = 0.7f;
+    public float runSpeed = 6f;
 
     //facing
     public bool isFacingRight;
 
     //axis
-    private Vector2 moveInput;
+    [SerializeField] private Vector2 moveInput;
     #endregion
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     
     void Update()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
-
+        //
         if (moveInput.x != 0)
             CheckDirectionToFace(moveInput.x > 0);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (moveInput.x != 0 && moveInput.y != 0) 
-        {
-            moveInput.x *= moveLimiter;
-            moveInput.y *= moveLimiter;
-        }
-
-        rb.velocity = new Vector2(moveInput.x * runSpeed, moveInput.y * runSpeed);
+        Move();
     }
 
+    private void Move()
+    {
+        //perform movement
+        if (PC)
+        {
+            moveInput.x = Input.GetAxisRaw("Horizontal");
+            moveInput.y = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            moveInput.x = joystick.Direction.x;
+            moveInput.y = joystick.Direction.y;
+        }
+
+       
+        rb.velocity = moveInput.normalized * runSpeed;
+    }
 
 
     private void Turn()
