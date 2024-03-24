@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     public SpawnMushrooms mushroom;
-
+    
     private List<FadeObject> fadeObjects = new List<FadeObject>();
 
     [SerializeField] private Rigidbody2D rb;
@@ -27,12 +27,20 @@ public class PlayerMovement : MonoBehaviour
 
     //axis
     [SerializeField] private Vector2 moveInput;
+    
+    public AudioSource footSteps;
+    
+    AudioSource mushroomsCollect;
+
+
     #endregion
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        footSteps = GetComponent<AudioSource>();
+        mushroomsCollect = GetComponent<AudioSource> ();
     }
 
     
@@ -79,7 +87,12 @@ public class PlayerMovement : MonoBehaviour
             mushroomCount++;
             Destroy(collision.gameObject);
             mushroom.Spawn();
+
+            
+            mushroomsCollect.Play ();
         }
+        
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -103,6 +116,18 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    void steps()
+    {
+        if((moveInput.x!=0) || (moveInput.y!=0)){
+            
+            footSteps.enabled = true;
+        }
+        else
+        {
+            footSteps.enabled = false;
+        }
+    }
+
     private void Move()
     {
         //perform movement
@@ -118,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
        
+        steps();
         rb.velocity = moveInput.normalized * runSpeed;
     }
 
