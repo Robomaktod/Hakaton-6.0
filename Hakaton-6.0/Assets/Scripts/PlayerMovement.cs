@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
+    public FadeObject fadeObject;
 
     [SerializeField] private Rigidbody2D rb;
     public Joystick joystick;
@@ -14,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     //facing
     public bool isFacingRight;
+
+    //player death
+    public bool playerInside;
+    public float timeInArea;
 
     //axis
     [SerializeField] private Vector2 moveInput;
@@ -28,7 +33,15 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        //
+        if (playerInside)
+        {
+            timeInArea += Time.deltaTime;
+            if (timeInArea >= 0.5f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         if (moveInput.x != 0)
             CheckDirectionToFace(moveInput.x > 0);
     }
@@ -37,6 +50,38 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("light"))
+        {
+            playerInside = true; 
+        }
+
+        if (collision.CompareTag("tree"))
+        {
+            fadeObject = collision.GetComponent<FadeObject>();
+            fadeObject.doFade = true;
+            fadeObject.GetComponent<Collider2D>().enabled = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("light"))
+        {
+            playerInside = false;
+            timeInArea = 0f;
+        }
+
+        if (collision.CompareTag("tree"))
+        {
+            fadeObject.doFade = false;
+        }
+    }
+
+
 
     private void Move()
     {

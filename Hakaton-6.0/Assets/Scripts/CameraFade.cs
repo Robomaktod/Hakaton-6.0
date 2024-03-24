@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class FadeObject2D : MonoBehaviour
 {
-    public FadeObject fadeObject;
     public GameObject player;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
     }
-
+    /*
     void Update()
     {
         Vector2 dir = player.transform.position - transform.position;
@@ -21,6 +20,7 @@ public class FadeObject2D : MonoBehaviour
                 if (fadeObject != null)
                 {
                     fadeObject.doFade = false;
+
                 }
             }
             else
@@ -33,7 +33,17 @@ public class FadeObject2D : MonoBehaviour
                 }
             }
         }
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+       
+    }
+
+
 }

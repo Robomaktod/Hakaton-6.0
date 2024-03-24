@@ -20,7 +20,10 @@ public class EnemyChasing : MonoBehaviour
     void FixedUpdate()
     {
         Chase();
-               
+        if (Vector2.Distance(transform.position, player.transform.position) > 15)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Chase()
@@ -37,8 +40,4 @@ public class EnemyChasing : MonoBehaviour
         isFacingRight = !isFacingRight;
     }
 
-    private void OnDrawGizmos()
-    {
-        
-    }
 }
