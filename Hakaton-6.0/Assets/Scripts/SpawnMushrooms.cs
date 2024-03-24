@@ -15,13 +15,14 @@ public class SpawnMushrooms : MonoBehaviour
     {
         for (int i = 0; i < mushroomCount; i++)
         {
-            if ((Physics.OverlapSphere(randPos, checkRadius, layerMask)).Length == 0) 
-            {
-                randPos = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0);
-            }
-
-            Instantiate(mushroom, randPos, Quaternion.identity);
+            Spawn();
         }
+    }
+
+    public void Spawn()
+    {
+        randPos = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0);
+        Instantiate(mushroom, randPos, Quaternion.identity);
     }
 
     

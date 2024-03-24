@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
-    public FadeObject fadeObject;
+    public SpawnMushrooms mushroom;
+
+    private List<FadeObject> fadeObjects = new List<FadeObject>();
 
     [SerializeField] private Rigidbody2D rb;
     public Joystick joystick;
@@ -19,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     //player death
     public bool playerInside;
     public float timeInArea;
+
+    //Mushrooms
+    public int mushroomCount;
 
     //axis
     [SerializeField] private Vector2 moveInput;
@@ -61,9 +66,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("tree"))
         {
-            fadeObject = collision.GetComponent<FadeObject>();
-            fadeObject.doFade = true;
-            fadeObject.GetComponent<Collider2D>().enabled = false;
+            FadeObject fadeObject = collision.GetComponent<FadeObject>();
+            if (fadeObject != null)
+            {
+                fadeObject.doFade = true;
+                fadeObjects.Add(fadeObject);
+            }
+        }
+
+        if (collision.CompareTag("mushroom"))
+        {
+            mushroomCount++;
+            Destroy(collision.gameObject);
+            mushroom.Spawn();
         }
     }
 
@@ -77,7 +92,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("tree"))
         {
-            fadeObject.doFade = false;
+            FadeObject fadeObject = collision.GetComponent<FadeObject>();
+            if (fadeObject != null)
+            {
+                fadeObject.doFade = false;
+                fadeObjects.Remove(fadeObject);
+            }
         }
     }
 

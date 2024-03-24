@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject spawnObject;
+    public GameObject[] spawnObject;
     public Vector3 randPos;
     private bool canSpawn = true;
+    public Vector2 timeRange;
+    public int zoneRange = 15;
 
     void Start()
     {
@@ -22,13 +24,16 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator Spawner()
     {
-        WaitForSeconds wait = new WaitForSeconds(Random.Range(10, 15));
+        WaitForSeconds wait = new WaitForSeconds(Random.Range(timeRange.x, timeRange.y));
 
         while (canSpawn)
         {
-            randPos = new Vector3(Random.Range(-15f, 15f), Random.Range(-15f, 15f), 0);
+            randPos = new Vector3(Random.Range(-zoneRange, zoneRange), Random.Range(-zoneRange, zoneRange), 0);
             yield return wait;
-            Instantiate(spawnObject, randPos + transform.position, Quaternion.identity);
+
+            int rand = Random.Range(0, spawnObject.Length);
+            GameObject spawn = spawnObject[rand];
+            Instantiate(spawn, randPos + transform.position, Quaternion.identity);
         }
     }
 

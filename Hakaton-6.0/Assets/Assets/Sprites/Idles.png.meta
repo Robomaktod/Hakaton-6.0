@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5eb6c4a074cab5147825f572167c9929
+guid: 290487f2a761e3c448cbde8aec8e22be
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree_0
+      name: side
       rect:
         serializedVersion: 2
-        x: 27
-        y: 2
-        width: 536
-        height: 834
+        x: 4
+        y: 1
+        width: 26
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00c32aef98513bc47965b0a0ac09eb13
-      internalID: 1187836336
+      spriteID: 14ebe2ee10a5d7248b3a815eccd9e56b
+      internalID: -1521772200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_1
+      name: idle
       rect:
         serializedVersion: 2
-        x: 647
-        y: 0
-        width: 478
-        height: 832
+        x: 36
+        y: 1
+        width: 24
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d518eda032a06642a95d597a4196552
-      internalID: 1406605885
+      spriteID: 39d3ac7c39c504b44acecd0303d1f3c4
+      internalID: -1551210816
       vertices: []
       indices: 
       edges: []
@@ -175,8 +175,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tree_0: 1187836336
-      Tree_1: 1406605885
+      idle: -1551210816
+      side: -1521772200
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
