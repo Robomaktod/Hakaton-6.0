@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource footSteps;
     
     AudioSource mushroomsCollect;
+    public GameManager gm;
 
 
     #endregion
@@ -51,7 +52,12 @@ public class PlayerMovement : MonoBehaviour
             timeInArea += Time.deltaTime;
             if (timeInArea >= 0.5f)
             {
-                Destroy(gameObject);
+                gm.GoToMenu();
+                EnemyChasing[] enemies = GameObject.FindObjectsOfType<EnemyChasing>() ;
+                foreach (EnemyChasing beb in enemies)
+                {
+                    Destroy(beb.gameObject);
+                }
             }
         }
 

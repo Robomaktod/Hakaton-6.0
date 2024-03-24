@@ -14,9 +14,11 @@ public class EnemyChasing : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player").transform;
+
     }
 
-    
+
     void FixedUpdate()
     {
         Chase();

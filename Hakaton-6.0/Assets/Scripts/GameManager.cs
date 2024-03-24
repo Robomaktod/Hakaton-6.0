@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public GameObject Home;
     public GameObject GamePanel;
 
-    GameObject player;
+    public GameObject player;
 
     void Start()
     {
         player.gameObject.SetActive(false);
+        Nen(false);
+
     }
 
     public void StartGame()
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
         Options.SetActive(false);
         Home.SetActive(false);
         player.SetActive(true);
+        Nen(true);
     }
 
     public void OpenSettings()
@@ -42,6 +45,19 @@ public class GameManager : MonoBehaviour
     {
         GamePanel.SetActive(false);
         Home.SetActive(true);
+        Options.SetActive(false);
+        Shop.SetActive(false);
+        player.gameObject.SetActive(false);
 
+
+    }
+
+    void Nen(bool a)
+    {
+        EnemyChasing[] enemies = GameObject.FindObjectsOfType<EnemyChasing>();
+        foreach (EnemyChasing beb in enemies)
+        {
+            beb.gameObject.SetActive(a);
+        }
     }
 }

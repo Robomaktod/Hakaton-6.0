@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotateLights : MonoBehaviour
 {
     public Transform player;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     void Start()
     {
