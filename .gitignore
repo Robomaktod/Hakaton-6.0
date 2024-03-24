@@ -3,6 +3,7 @@
 ###
 [Aa]ssets/AssetStoreTools*
 [Bb]uild/
+[Ll]og/
 [Ll]ibrary/
 [Ll]ocal[Cc]ache/
 [Oo]bj/
@@ -40,3 +41,5 @@ Icon?
 ehthumbs.db
 Thumbs.db
 *.log
+/Hakaton-6.0/Logs
+/Hakaton-6.0/Logs
